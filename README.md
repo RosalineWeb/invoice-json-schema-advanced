@@ -32,3 +32,11 @@ This simulates extracting structured data from complex PDF invoices (25–150 pa
 - JSON Schema design
 - Validation logic
 - API-ready structure design
+
+ ## Data Flow
+
+1. Raw PDF document (unstructured)
+2. Data extraction (manual or automated)
+3. Structured JSON output
+4. JSON Schema validation
+5. Ready for API integration
