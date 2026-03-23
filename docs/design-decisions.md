@@ -23,3 +23,8 @@ The schema is designed to support:
 
 ## 6. Data Integrity Consideration
 Subtotal and tax are separated to allow validation logic and future rule enforcement.
+
+## Future Validation Improvements
+- Enforcing subtotal + tax = total_amount
+- Cross-field validation logic
+- Business rule validation layer
