@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Advanced Invoice Schema",
+  "type": "object",
+  "required": [
+    "invoice_id",
+    "issue_date",
+    "currency",
+    "vendor",
+    "customer",
+    "items",
+    "total_amount"
+  ],
+  "properties": {
+    "invoice_id": {
+      "type": "string",
+      "pattern": "^INV-[0-9]{4}-[0-9]{3}$",
+      "description": "Unique invoice identifier"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "due_date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "currency": {
+      "type": "string",
+      "enum": ["USD", "CAD", "EUR"]
+    },
+    "vendor": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["description", "quantity", "unit_price", "total"],
+        "properties": {
+          "description": { "type": "string" },
+          "quantity": { "type": "number", "minimum": 0 },
+          "unit_price": { "type": "number", "minimum": 0 },
+          "total": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "subtotal": {
+      "type": "number",
+      "minimum": 0
+    },
+    "tax": {
+      "type": "number",
+      "minimum": 0
+    },
+    "total_amount": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+
+  "allOf": [
+    {
+      "if": {
+        "required": ["subtotal", "tax"]
+      },
+      "then": {
+        "properties": {
+          "total_amount": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  ]
+}
