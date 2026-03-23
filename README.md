@@ -1,3 +1,13 @@
+## Problem
+
+Many organizations receive large PDF invoices (25–150 pages) that contain unstructured data.
+Manually extracting this information is time-consuming and error-prone.
+
+## Solution
+
+This project demonstrates how to convert unstructured invoice data into a structured JSON format,
+and validate it using a scalable JSON Schema.
+
 # Invoice JSON Schema (Advanced)
 
 This project demonstrates designing a production-level JSON Schema from unstructured invoice documents.
